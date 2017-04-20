@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hello, WebVR! - A-Frame</title>
+    <title>Maryland Day VR Experience</title>
     <meta name="description" content="Hello, WebVR! - A-Frame">
     <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-animation-component@%5E3.2.x/dist/aframe-animation-component.min.js"></script>
@@ -21,6 +21,7 @@
           var sceneEl = document.querySelector('a-scene'); 
           var boxEl = sceneEl.querySelector('#d');
           var camera = sceneEl.querySelector('#Camera');
+          var room = sceneEl.querySelector('#room');
 
           var occured = false
           
@@ -29,13 +30,20 @@
             	boxEl.emit('open');
             	camera.emit('move');
             	occured = true;
+            	      // Wait for fade to complete.
+		      setTimeout(function () {
+		        // Set image.
+		        room.setAttribute('visible', false);
+		      }, 5500);
         	}
           });
         }
       });
     </script>
 
-    <a-scene maryland-day fog="type: linear; color: #AAB; far: 30; near: 0">
+    <!-- fog="type: linear; color: #AAB; far: 30; near: 0" -->
+
+    <a-scene maryland-day >
 
     <a-asset>
     	<a-asset-item id="door-obj" src="./Models/door1.1.obj"></a-asset-item>
@@ -66,11 +74,7 @@
     </a-camera>
 
 
-     <!-- Door and its parent object --> 
-     <a-entity id="d" position="0 0 -3" >
-      <a-entity obj-model="obj: #door-obj; mtl: #door-mtl" position=".5 0 0" material="color: blue" rotation="0 180 0" scale=".5 .5 .5"></a-entity>
-      <a-animation attribute="rotation" begin="open" to="0 90 0" dur="1000"></a-animation>
-	 </a-entity>
+
 
 	 <!-- testudos -->
 	 <!-- <a-entity position="-3.69 1.8 -8.06" rotation="0 30 0" scale=".5 .7 .18" text-geometry="value: Art In Space And Place in the Parren J. Mitchell Art-Sociology Building:; font: #exoItalicFont; style: italic; size: 0.09; weight: bold; height: 0;" material="shader: flat; color: white"></a-entity> -->
@@ -80,22 +84,27 @@
 	  <a-entity obj-model="obj: #testudo-obj;" position="5 .2 -8.58" material="color: #b98706" rotation="0 -30 0" scale=".5 .5 .5"></a-entity>
 	 
 
-	 <!-- Walls and floor-->
-	 <a-plane position="-10 0 -3" rotation="0 0 0" scale="5 5 5" width="4" height="4" color="#7BC8A4"></a-plane>
-	 <a-plane position="-10 0 -3.1" rotation="0 180 0" scale="5 5 5" width="4" height="4" color="#7BC8A4"></a-plane>
-	 
-	 <a-plane position="11 0 -3" rotation="0 0 0" scale="5 5 5" width="4" height="4" color="#7BC8A4"></a-plane>
-	 <a-plane position="11 0 -3.1" rotation="0 180 0" scale="5 5 5" width="4" height="4" color="#7BC8A4"></a-plane>
+	 <!-- Walls and floor -->
+	 <a-entity id="room">
 
-	 <a-plane position="0 6.1 -3" rotation="0 0 0" scale="5 1.8 5" width="4" height="4" color="#7BC8A4"></a-plane>
-	 <a-plane position="0 6.1 -3.1" rotation="0 180 0" scale="5 1.8 5" width="4" height="4" color="#7BC8A4"></a-plane>
+	 	 <!-- Directions text -->
+	 	 <a-entity position="-.2 2.64 -2.97" scale=".5 .7 .18" text-geometry="value: Click to open the door; font: #exoItalicFont; style: italic; size: 0.2; weight: bold; height: 0;" material="shader: flat; color: white"></a-entity>
 
-	 <a-plane position="0 -7.56 -3" rotation="0 0 0" scale="9.13 3.78 5" width="4" height="4" color="#7BC8A4"></a-plane>
-	 <a-plane position="0 -7.56 -3.1" rotation="0 180 0" scale="9.13 3.78 5" width="4" height="4" color="#7BC8A4"></a-plane>
+	 	 <!-- Door and its parent object --> 
+	     <a-entity id="d" position="0 0 -3" >
+	      <a-entity obj-model="obj: #door-obj; mtl: #door-mtl" position=".5 0 0" material="color: blue" rotation="0 180 0" scale=".5 .5 .5"></a-entity>
+	      <a-animation attribute="rotation" begin="open" to="0 90 0" dur="1000"></a-animation>
+		 </a-entity>
 
-	 <!-- Directions text -->
-	 <a-entity position="-.2 2.64 -2.97" scale=".5 .7 .18" text-geometry="value: Click to open the door; font: #exoItalicFont; style: italic; size: 0.2; weight: bold; height: 0;" material="shader: flat; color: white"></a-entity>
-
+		 <a-plane id="floor" position="0.5 0 2" scale="10 4.099 5.0" rotation="-90 -90 0" color="yellow"></a-plane>
+		 <a-plane id="leftWall" position="-1.5 1.646 2.0" scale="10 3.683 5.0" rotation="0 90 0" color="blue"></a-plane>
+		 <a-plane id="rightWall" position="2.462 1.646 2.0" scale="10 3.683 5.0" rotation="0 -90 0" color="purple"></a-plane>
+		 <a-plane id="backWall" position="0.5 1.673 6.976" scale="4 3.653 5.0" rotation="0 180 0" color="orange"></a-plane>
+		 <a-plane id="cieling" position="0.5 3.363 2.0" scale="10 4.099 5.0" rotation="90 -90 0" color="red"></a-plane>
+		 <a-plane id="frontTop" position="0.5 2.989 -3.0" scale="4 1 5.0" rotation="0 0 0" color="#7BC8A4"></a-plane>
+		 <a-plane id="frontLeft" position="-0.791 1.242 -3.0" scale="1.622 2.51 5.0" rotation="0 0 0" color="#7BC8A4"></a-plane>
+		 <a-plane id="frontRight" position="1.810 1.242 -3.0" scale="1.622 2.51 5.0" rotation="0 0 0" color="#7BC8A4"></a-plane>
+	 </a-entity>
 
 	 <!-- Maryland Day text -->
 	 <a-entity position="-3 1 -10" rotation="5 0 0">
@@ -106,7 +115,6 @@
          material="color:lavenderblush; metalness:0; roughness: 0; color: red;"
        ></a-entity>
 
-       
        <a-entity position="2 0 -0.5" scale="0.6 1.2 1" text-geometry="value: 2; font: #exoFont; bevelEnabled: true; bevelSize: 0.1; bevelThickness: 0.1; curveSegments: 1; size: 1.5; height: 0.5;" material="color:pink; metalness:0; roughness: 0.05; color: green;"></a-entity>
       <a-entity position="2.7 0 -0.5" scale="0.6 1.2 1" text-geometry="value: 0; font: #exoFont; bevelEnabled: true; bevelSize: 0.1; bevelThickness: 0.1; curveSegments: 1; size: 1.5; height: 0.5;" material="color:pink; metalness:0; roughness: 0.05; color: blue;"></a-entity>
        <a-entity position="3.5 0 -0.5" scale="0.6 1.2 1" text-geometry="value: 1; font: #exoFont; bevelEnabled: true; bevelSize: 0.1; bevelThickness: 0.1; curveSegments: 1; size: 1.5; height: 0.5;" material="color:pink; metalness:0; roughness: 0.05; color: orange;"></a-entity>
@@ -116,9 +124,6 @@
 
      </a-entity>
 
-     <!-- Floor -->
-     <a-plane position="0 0 0" rotation="-90 0 0" width="1000" height="10000" color="black"></a-plane>
-
     <!-- Particle systems -->
    	 <a-entity particle-system="preset: default; particleCount: 100; color: yellow" position="-5 0 -10"></a-entity>
    	 <a-entity particle-system="preset: default; particleCount: 100; color: red" position="-5 0 -10"></a-entity>
@@ -126,7 +131,7 @@
    	 <a-entity particle-system="preset: default; particleCount: 100; color: yellow" position="5 0 -10"></a-entity>
    	 <a-entity particle-system="preset: default; particleCount: 100; color: red" position="5 0 -10"></a-entity>
 
-	 <a-sky color="lightgray"></a-sky>
+	 <a-sky id="image-360" radius="100" src="#city"></a-sky>
 
 	  <!--
       <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
