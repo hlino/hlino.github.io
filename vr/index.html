@@ -35,7 +35,8 @@
 		      // Fade out image.
 		      data.target.emit('set-image-fade');
 		      data.target.setAttribute('material', 'src', data.src);
-		     // data.target2.setAttribute('src', data.src2);
+		      console.log("SRC:"+data.src2);
+		      data.target2.setAttribute('material', 'src', data.src2);
 		      // Wait for fade to complete.
 		      setTimeout(function () {
 		        // Set image.
@@ -139,14 +140,14 @@
 	 <!-- <a-entity position="-3.69 1.8 -8.06" rotation="0 30 0" scale=".5 .7 .18" text-geometry="value: Art In Space And Place in the Parren J. Mitchell Art-Sociology Building:; font: #exoItalicFont; style: italic; size: 0.09; weight: bold; height: 0;" material="shader: flat; color: white"></a-entity> -->
 	  <!--<a-image src="#text1" position="-3.42 2.4 -8.49" rotation="0 30 0" scale="1.5 1.5 1.5"></a-image>-->
 	  <a-entity position="-3.554 .033 -7.868" scale=".5 .7 .18" rotation="0 30 0" text-geometry="value: Click Me; style: italic; size: 0.3; weight: bold; height: 0;" material="shader: flat; color: white"></a-entity>
-	  <a-entity class="clickable" obj-model="obj: #testudo-obj;" position="-3.78 .2 -8.28" material="color: #b98706" rotation="0 30 0" scale=".5 .5 .5" set-image="on: click; target: #image-360; src: #artSoc; target2: #HUD; src2:text1"></a-entity>
+	  <a-entity class="clickable" obj-model="obj: #testudo-obj;" position="-3.78 .2 -8.28" material="color: #b98706" rotation="0 30 0" scale=".5 .5 .5" set-image="on: click; target: #image-360; src: #artSoc; target2: #HUD; src2:#text1"></a-entity>
 
 	  <!--<a-image src="#text2" position="5.35 2.4 -8.38" rotation="0 -30 0" scale="1.5 1.5 1.5"></a-image>-->
 	  <a-entity position="4.709 0 -8.204" scale=".5 .7 .18" rotation="0 -30 0" text-geometry="value: Click Me; style: italic; size: 0.3; weight: bold; height: 0;" material="shader: flat; color: white"></a-entity>
-	  <a-entity class="clickable" obj-model="obj: #testudo-obj;" position="5 .2 -8.58" material="color: #b98706" rotation="0 -30 0" scale=".5 .5 .5" set-image="on: click; target: #image-360; src: #mall; target2: #HUD; src2:text2"></a-entity>></a-entity>
+	  <a-entity class="clickable" obj-model="obj: #testudo-obj;" position="5 .2 -8.58" material="color: #b98706" rotation="0 -30 0" scale=".5 .5 .5" set-image="on: click; target: #image-360; src: #mall; target2: #HUD; src2:#text2"></a-entity>></a-entity>
 	 
-
-	  <a-image id="HUD" src="#text2" position="0.746 0 -8" rotation="-45 0 0" scale="1.5 1.5 1.5"></a-image>
+	  <!-- HUD -->
+	  <a-plane id="HUD" src="#text2" position="0.746 0 -8" rotation="-45 0 0" scale="1.5 1.5 1.5" shader="flat"></a-plane>
 
 
 	 <!-- Walls and floor -->
