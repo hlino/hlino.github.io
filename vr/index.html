@@ -108,6 +108,10 @@
 
    		<img id="city" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg">
    		<img id="cubes" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">
+
+   		<img id="mall" src="./Textures/UMDmall.JPG"></a-asset>
+   		<img id="artSoc" src="./Textures/artSoc.JPG"></a-asset>
+   		<img id="entrance" src="./Textures/UMDentrance.JPG"></a-asset>
    		
    		<a-asset-item id="doorWall-obj" src="./Models/WallForDoor1.1.obj"></a-asset-item>
    		<a-asset-item id="doorWall-mtl" src="./Models/WallForDoor1.1.mtl"></a-asset-item>
@@ -135,11 +139,11 @@
 	 <!-- <a-entity position="-3.69 1.8 -8.06" rotation="0 30 0" scale=".5 .7 .18" text-geometry="value: Art In Space And Place in the Parren J. Mitchell Art-Sociology Building:; font: #exoItalicFont; style: italic; size: 0.09; weight: bold; height: 0;" material="shader: flat; color: white"></a-entity> -->
 	  <!--<a-image src="#text1" position="-3.42 2.4 -8.49" rotation="0 30 0" scale="1.5 1.5 1.5"></a-image>-->
 	  <a-entity position="-3.554 .033 -7.868" scale=".5 .7 .18" rotation="0 30 0" text-geometry="value: Click Me; style: italic; size: 0.3; weight: bold; height: 0;" material="shader: flat; color: white"></a-entity>
-	  <a-entity class="clickable" obj-model="obj: #testudo-obj;" position="-3.78 .2 -8.28" material="color: #b98706" rotation="0 30 0" scale=".5 .5 .5" set-image="on: click; target: #image-360; src: #cubes; target2: #HUD; src2:text1"></a-entity>
+	  <a-entity class="clickable" obj-model="obj: #testudo-obj;" position="-3.78 .2 -8.28" material="color: #b98706" rotation="0 30 0" scale=".5 .5 .5" set-image="on: click; target: #image-360; src: #artSoc; target2: #HUD; src2:text1"></a-entity>
 
 	  <!--<a-image src="#text2" position="5.35 2.4 -8.38" rotation="0 -30 0" scale="1.5 1.5 1.5"></a-image>-->
 	  <a-entity position="4.709 0 -8.204" scale=".5 .7 .18" rotation="0 -30 0" text-geometry="value: Click Me; style: italic; size: 0.3; weight: bold; height: 0;" material="shader: flat; color: white"></a-entity>
-	  <a-entity class="clickable" obj-model="obj: #testudo-obj;" position="5 .2 -8.58" material="color: #b98706" rotation="0 -30 0" scale=".5 .5 .5" set-image="on: click; target: #image-360; src: #city; target2: #HUD; src2:text2"></a-entity>></a-entity>
+	  <a-entity class="clickable" obj-model="obj: #testudo-obj;" position="5 .2 -8.58" material="color: #b98706" rotation="0 -30 0" scale=".5 .5 .5" set-image="on: click; target: #image-360; src: #mall; target2: #HUD; src2:text2"></a-entity>></a-entity>
 	 
 
 	  <a-image id="HUD" src="#text2" position="0.746 0 -8" rotation="-45 0 0" scale="1.5 1.5 1.5"></a-image>
@@ -181,7 +185,7 @@
        <a-entity position="3.5 0 -0.5" scale="0.6 1.2 1" text-geometry="value: 1; font: #exoFont; bevelEnabled: true; bevelSize: 0.1; bevelThickness: 0.1; curveSegments: 1; size: 1.5; height: 0.5;" material="color:pink; metalness:0; roughness: 0.05; color: orange;"></a-entity>
        <a-entity position="4.2 0 -0.5" scale="0.6 1.2 1" text-geometry="value: 7; font: #exoFont; bevelEnabled: true; bevelSize: 0.1; bevelThickness: 0.1; curveSegments: 1; size: 1.5; height: 0.5;" material="color:pink; metalness:0; roughness: 0.05; color: purple;"></a-entity>
 
-       <a-entity position=".7 -.65 .13" scale=".5 .7 .18" text-geometry="value: Saturday April 29th; font: #exoItalicFont; style: italic; size: 0.8; weight: bold; height: 0;" material="shader: flat; color: white"></a-entity>
+       <a-entity position=".7 -.65 .13" scale=".5 .7 .18" text-geometry="value: Saturday April 29th; font: #exoItalicFont; style: italic; size: 0.8; weight: bold; height: 0;" material="shader: flat; color: #4959f5"></a-entity>
 
      </a-entity>
 
@@ -192,7 +196,7 @@
    	 <a-entity particle-system="preset: default; particleCount: 100; color: yellow" position="5 0 -10"></a-entity>
    	 <a-entity particle-system="preset: default; particleCount: 100; color: red" position="5 0 -10"></a-entity>
 
-	 <a-sky id="image-360" radius="100" src="#city"></a-sky>
+	 <a-sky id="image-360" radius="100" src="#entrance"></a-sky>
 
 	  <!--
       <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
