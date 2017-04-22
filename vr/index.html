@@ -31,12 +31,28 @@
 
 		    this.setupFadeAnimation();
 
+		    var cursor = document.querySelector('#cursor');
+
+		    //makes cursor pulse if it is in the interaction zone
+		    el.addEventListener('mouseenter', function(){
+		    	console.log("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		    	cursor.emit('pulse');
+		    });
+
+		    //places mouse back to normal if it leaves the interaction zone
+		   	el.addEventListener('mouseleave', function(){
+		    	console.log("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		    	cursor.emit('normal');
+		    });
+
 		    el.addEventListener(data.on, function () {
+		    	console.log("IN HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		      // Fade out image.
 		      data.target.emit('set-image-fade');
 		      data.target.setAttribute('material', 'src', data.src);
 		      console.log("SRC:"+data.src2);
 		      data.target2.setAttribute('material', 'src', data.src2);
+		      cursor.emit('normal');
 		      // Wait for fade to complete.
 		      setTimeout(function () {
 		        // Set image.
@@ -96,16 +112,18 @@
       });
     </script>
 
+
     <!-- fog="type: linear; color: #AAB; far: 30; near: 0" -->
 
-    <a-scene maryland-day >
+    <a-scene maryland-day>
 
     <a-asset>
     	<a-asset-item id="door-obj" src="./Models/door1.1.obj"></a-asset-item>
    		<a-asset-item id="door-mtl" src="./Models/door1.1.mtl"></a-asset-item>
 
-   		<a-asset-item id="text1" src="./Textures/ArtSpacePlace.PNG"></a-asset-item>
-   		<a-asset-item id="text2" src="./Textures/NoExcuses.PNG"></a-asset-item>
+   		<a-asset-item id="text1" src="./Textures/artSocInfo.png"></a-asset-item>
+   		<a-asset-item id="text2" src="./Textures/mallInfo.png"></a-asset-item>
+   		<a-asset-item id="directions" src="./Textures/directionsHUD.png"></a-asset-item>
 
    		<img id="city" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg">
    		<img id="cubes" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">
@@ -133,21 +151,21 @@
     	<a-animation attribute="position" begin="move" to=".7 1.6 -5" dur="10000" easing="ease-out"></a-animation>
     	<a-cursor id="cursor"
           fuse="true"
-          raycaster="objects: .clickable"></a-cursor>
+          raycaster="objects: .clickable" scale='1 1 1'>
+          <a-animation attribute="scale" from="1 1 1" to="2 2 2" dur="500" direction="alternate" repeat="3" begin="pulse" end="normal" easing="ease-in"></a-animation>
+          <a-animation attribute="scale" to="1 1 1" begin="normal" easing="ease-in"></a-animation>
+          </a-cursor>
     </a-camera>
 
 	 <!-- testudos -->
-	 <!-- <a-entity position="-3.69 1.8 -8.06" rotation="0 30 0" scale=".5 .7 .18" text-geometry="value: Art In Space And Place in the Parren J. Mitchell Art-Sociology Building:; font: #exoItalicFont; style: italic; size: 0.09; weight: bold; height: 0;" material="shader: flat; color: white"></a-entity> -->
-	  <!--<a-image src="#text1" position="-3.42 2.4 -8.49" rotation="0 30 0" scale="1.5 1.5 1.5"></a-image>-->
 	  <a-entity position="-3.554 .033 -7.868" scale=".5 .7 .18" rotation="0 30 0" text-geometry="value: Click Me; style: italic; size: 0.3; weight: bold; height: 0;" material="shader: flat; color: white"></a-entity>
-	  <a-entity class="clickable" obj-model="obj: #testudo-obj;" position="-3.78 .2 -8.28" material="color: #b98706" rotation="0 30 0" scale=".5 .5 .5" set-image="on: click; target: #image-360; src: #artSoc; target2: #HUD; src2:#text1"></a-entity>
+	  <a-entity id="ArtSocTestudo" class="clickable" obj-model="obj: #testudo-obj;" position="-3.78 .2 -8.28" material="color: #b98706" rotation="0 30 0" scale=".5 .5 .5" set-image="on: click; target: #image-360; src: #artSoc; target2: #HUD; src2:#text1"></a-entity>
 
-	  <!--<a-image src="#text2" position="5.35 2.4 -8.38" rotation="0 -30 0" scale="1.5 1.5 1.5"></a-image>-->
 	  <a-entity position="4.709 0 -8.204" scale=".5 .7 .18" rotation="0 -30 0" text-geometry="value: Click Me; style: italic; size: 0.3; weight: bold; height: 0;" material="shader: flat; color: white"></a-entity>
-	  <a-entity class="clickable" obj-model="obj: #testudo-obj;" position="5 .2 -8.58" material="color: #b98706" rotation="0 -30 0" scale=".5 .5 .5" set-image="on: click; target: #image-360; src: #mall; target2: #HUD; src2:#text2"></a-entity>></a-entity>
+	  <a-entity id="MallTestudo" class="clickable" obj-model="obj: #testudo-obj;" position="5 .2 -8.58" material="color: #b98706" rotation="0 -30 0" scale=".5 .5 .5" set-image="on: click; target: #image-360; src: #mall; target2: #HUD; src2:#text2"></a-entity>></a-entity>
 	 
 	  <!-- HUD -->
-	  <a-plane id="HUD" src="#text2" position="0.746 0 -8" rotation="-45 0 0" scale="1.5 1.5 1.5" shader="flat"></a-plane>
+	  <a-plane id="HUD" src="#directions" position="0.746 0 -8" rotation="-45 0 0" scale="1.5 1.5 1.5" shader="flat"></a-plane>
 
 
 	 <!-- Walls and floor -->
