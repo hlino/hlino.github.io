@@ -1,0 +1,53 @@
+<!-- include A-Frame obviously -->
+<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+<!-- include ar.js for A-Frame -->
+<script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	 $(document).ready(function(){
+
+	 	
+	 });
+</script>
+
+<style type="text/css">
+  
+  .control-layer{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+  }
+
+  .control-layer{
+            z-index: 50;
+            background-color: rgba(255, 255, 255, 0);
+  }
+</style>
+
+<body style='margin : 0px; overflow: hidden;'>
+
+  <a-scene embedded arjs='debugUIEnabled: false;'>
+
+  	<a-assets>
+    	<!-- <a-asset-item id="shirt" src="./models/scene.gltf"></a-asset-item>
+      <a-asset-item id="shirt" src="./models/scene.gltf"></a-asset-item> -->
+    <a-asset-item id="shell_obj" src="./models/startupshell-logo3D_red.obj"></a-asset-item>
+    <a-asset-item id="shell_mtl" src="./models/startupshell-logo3D_red.mtl"></a-asset-item>
+  	</a-assets>
+
+    <!-- create your content here. just a box for now -->
+    <!-- <a-entity gltf-model="#shirt"></a-entity> -->
+    <a-entity obj-model="obj: #tree-obj; mtl: #tree-mtl"></a-entity>
+
+    <!-- define a camera which will move according to the marker position -->
+    <a-marker-camera preset='hiro'></a-marker-camera>
+  </a-scene>
+
+  <div class='control-layer overlay'>
+    <button type="button" >Click Me!</button>  
+  </div>
+  
+</body>
